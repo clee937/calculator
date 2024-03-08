@@ -1,0 +1,91 @@
+@use "./_variables" as *;
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: arial, sans-serif;
+}
+
+.calculator {
+  background-color: $calculator-background-color;
+  border-radius: 15px;
+  padding: 20px 15px;
+  min-width: 320px;
+  display: grid;
+  grid-template-areas:
+    "display display display display"
+    "display display display display"
+    "clear plus-minus percentage divide"
+    "seven eight nine multiply"
+    "four five six minus"
+    "one two three plus"
+    "zero zero point equals";
+  gap: 10px;
+  height: 100vh;
+
+  &__display {
+    background-color: $calculator-background-color;
+    color: $text-primary-color;
+    grid-area: display;
+    padding: 10px;
+    text-align: right;
+    vertical-align: bottom;
+    font-size: 50px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    border-radius: 10px;
+    font-size: 1.5rem;
+  }
+
+  &__button--0 {
+    grid-area: zero;
+  }
+
+  &__button--center {
+    background-color: $button-primary-color;
+    color: $text-primary-color;
+
+    &:hover {
+      background-color: darken($button-primary-color, 10%);
+    }
+  }
+
+  &__button--side {
+    background-color: $button-secondary-color;
+    color: $text-primary-color;
+
+    &:hover {
+      background-color: darken($button-secondary-color, 10%);
+    }
+  }
+
+  &__button--top {
+    background-color: $button-tertiary-color;
+    color: $text-secondary-color;
+
+    &:hover {
+      background-color: darken($button-tertiary-color, 10%);
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .calculator {
+    width: 30%;
+    height: 80%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .calculator {
+    width: 30%;
+    height: 70%;
+  }
+}

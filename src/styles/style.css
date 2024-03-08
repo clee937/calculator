@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: arial, sans-serif;
+}
+
+.calculator {
+  background-color: #000000;
+  border-radius: 15px;
+  padding: 20px 15px;
+  min-width: 320px;
+  display: grid;
+  grid-template-areas: "display display display display" "display display display display" "clear plus-minus percentage divide" "seven eight nine multiply" "four five six minus" "one two three plus" "zero zero point equals";
+  gap: 10px;
+  height: 100vh;
+}
+.calculator__display {
+  background-color: #000000;
+  color: #f9f9f9;
+  grid-area: display;
+  padding: 10px;
+  text-align: right;
+  vertical-align: bottom;
+  font-size: 50px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.calculator__button {
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+.calculator__button--0 {
+  grid-area: zero;
+}
+.calculator__button--center {
+  background-color: #333333;
+  color: #f9f9f9;
+}
+.calculator__button--center:hover {
+  background-color: #1a1a1a;
+}
+.calculator__button--side {
+  background-color: #f19938;
+  color: #f9f9f9;
+}
+.calculator__button--side:hover {
+  background-color: #e68010;
+}
+.calculator__button--top {
+  background-color: #a5a5a5;
+  color: #0e0e0e;
+}
+.calculator__button--top:hover {
+  background-color: #8c8c8c;
+}
+
+@media screen and (min-width: 500px) {
+  .calculator {
+    width: 30%;
+    height: 80%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .calculator {
+    width: 30%;
+    height: 70%;
+  }
+}/*# sourceMappingURL=style.css.map */
