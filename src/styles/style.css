@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 300;
 }
 
 body {
@@ -9,70 +11,51 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: arial, sans-serif;
 }
 
 .calculator {
+  display: grid;
   background-color: #000000;
   border-radius: 15px;
-  padding: 20px 15px;
-  min-width: 320px;
-  display: grid;
-  grid-template-areas: "display display display display" "display display display display" "clear plus-minus percentage divide" "seven eight nine multiply" "four five six minus" "one two three plus" "zero zero point equals";
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(7, 50px);
   gap: 10px;
-  height: 100vh;
+  padding: 12px;
 }
-.calculator__display {
-  background-color: #000000;
+.calculator .calculator__display {
   color: #f9f9f9;
-  grid-area: display;
-  padding: 10px;
-  text-align: right;
-  vertical-align: bottom;
-  font-size: 50px;
-  font-weight: 400;
+  grid-column: 1/-1;
+  grid-row: 1/3;
+  font-size: 3rem;
+  padding: 5px;
   display: flex;
-  flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-end;
 }
-.calculator__button {
-  border-radius: 10px;
+.calculator .calculator__button {
+  cursor: pointer;
   font-size: 1.5rem;
+  border-radius: 50px;
+  border: none;
+  transition: filter 0.1s;
 }
-.calculator__button--0 {
-  grid-area: zero;
+.calculator .calculator__button:active, .calculator .calculator__button:focus {
+  filter: brightness(130%);
 }
-.calculator__button--center {
+.calculator .calculator__button--center {
   background-color: #333333;
   color: #f9f9f9;
 }
-.calculator__button--center:hover {
-  background-color: #1a1a1a;
-}
-.calculator__button--side {
-  background-color: #f19938;
-  color: #f9f9f9;
-}
-.calculator__button--side:hover {
-  background-color: #e68010;
-}
-.calculator__button--top {
+.calculator .calculator__button--top {
   background-color: #a5a5a5;
   color: #0e0e0e;
 }
-.calculator__button--top:hover {
-  background-color: #8c8c8c;
+.calculator .calculator__button--side {
+  background-color: #f19938;
+  color: #f9f9f9;
 }
-
-@media screen and (min-width: 500px) {
-  .calculator {
-    width: 30%;
-    height: 80%;
-  }
-}
-@media screen and (min-width: 768px) {
-  .calculator {
-    width: 30%;
-    height: 70%;
-  }
+.calculator .calculator__button--large {
+  grid-column: span 2;
 }/*# sourceMappingURL=style.css.map */

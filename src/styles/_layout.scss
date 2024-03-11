@@ -5,87 +5,59 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: arial, sans-serif;
 }
 
 .calculator {
+  display: grid;
   background-color: $calculator-background-color;
   border-radius: 15px;
-  padding: 20px 15px;
-  min-width: 320px;
-  display: grid;
-  grid-template-areas:
-    "display display display display"
-    "display display display display"
-    "clear plus-minus percentage divide"
-    "seven eight nine multiply"
-    "four five six minus"
-    "one two three plus"
-    "zero zero point equals";
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(7, 50px);
   gap: 10px;
-  height: 100vh;
+  padding: 12px;
 
-  &__display {
-    background-color: $calculator-background-color;
+  .calculator__display {
     color: $text-primary-color;
-    grid-area: display;
-    padding: 10px;
-    text-align: right;
-    vertical-align: bottom;
-    font-size: 50px;
-    font-weight: 400;
+    grid-column: 1 / -1;
+    grid-row: 1 / 3;
+    font-size: 3rem;
+    padding: 5px;
     display: flex;
-    flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-end;
   }
 
-  &__button {
-    border-radius: 10px;
+  .calculator__button {
+    cursor: pointer;
     font-size: 1.5rem;
-  }
+    border-radius: 50px;
+    border: none;
+    transition: filter 0.1s;
 
-  &__button--0 {
-    grid-area: zero;
-  }
-
-  &__button--center {
-    background-color: $button-primary-color;
-    color: $text-primary-color;
-
-    &:hover {
-      background-color: darken($button-primary-color, 10%);
+    &:active,
+    &:focus {
+      filter: brightness(130%);
     }
   }
 
-  &__button--side {
-    background-color: $button-secondary-color;
+  .calculator__button--center {
+    background-color: $button-number-color;
     color: $text-primary-color;
-
-    &:hover {
-      background-color: darken($button-secondary-color, 10%);
-    }
   }
 
-  &__button--top {
-    background-color: $button-tertiary-color;
+  .calculator__button--top {
+    background-color: $button-function-color;
     color: $text-secondary-color;
-
-    &:hover {
-      background-color: darken($button-tertiary-color, 10%);
-    }
   }
-}
 
-@media screen and (min-width: 500px) {
-  .calculator {
-    width: 30%;
-    height: 80%;
+  .calculator__button--side {
+    background-color: $button-operator-color;
+    color: $text-primary-color;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .calculator {
-    width: 30%;
-    height: 70%;
+  .calculator__button--large {
+    grid-column: span 2;
   }
 }
