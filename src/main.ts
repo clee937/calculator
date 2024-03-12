@@ -88,6 +88,33 @@ const addToSelectedOperator = (event: Event) => {
   }
 };
 
+const formatResult = (result: number) => {
+  if (result.toString().includes(".")) {
+    const floatResultAsString = parseFloat(result.toFixed(8)).toString();
+    if (floatResultAsString.length > 6) {
+      calculatorDisplay.classList.add("calculator__display--small");
+    }
+    previousNumber = floatResultAsString;
+    currentNumber = "";
+    return previousNumber;
+  }
+  const resultAsString = result.toString();
+  const resultLength = result.toString().length;
+
+  if (resultLength > 6) {
+    calculatorDisplay.classList.add("calculator__display--small");
+    calculatorDisplay.innerText = resultAsString;
+    previousNumber = resultAsString;
+    currentNumber = "";
+    return previousNumber;
+  } else {
+    calculatorDisplay.innerText = result.toString();
+    previousNumber = result.toString();
+    currentNumber = "";
+    return previousNumber;
+  }
+};
+
 const calculate = (operator: string) => {
   let result: number = 0;
   const current = parseFloat(currentNumber);
@@ -104,10 +131,15 @@ const calculate = (operator: string) => {
     result = previous / current;
   }
 
-  calculatorDisplay.innerText = result.toString();
-  previousNumber = result.toString();
-  currentNumber = "";
-  return previousNumber;
+  let formattedResult = formatResult(result);
+
+  if (formattedResult.length > 10) {
+    formattedResult = formattedResult.slice(0, 10);
+
+    return formattedResult;
+  } else {
+    return formattedResult;
+  }
 };
 
 const returnResult = () => {
@@ -122,10 +154,6 @@ const clearCalculator = () => {
   selectedOperator = "";
   calculatorDisplay.classList.remove("calculator__display--small");
 };
-
-// }
-
-// 3. create forEach loop to attach event handlers to number buttons
 
 calculatorNumbers.forEach((number) => {
   number.addEventListener("click", handleButtonClick);
