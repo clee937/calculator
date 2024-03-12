@@ -1,4 +1,3 @@
-// 1. query selectors to access elements from the DOM
 const calculatorDisplay = document.querySelector<HTMLDivElement>(
   ".calculator__display"
 );
@@ -20,8 +19,6 @@ const decimal = document.querySelector<HTMLButtonElement>(
   ".calculator__decimal"
 );
 
-// 2. Validate elements
-
 if (calculatorNumbers.length === 0) {
   throw new Error("Issue with calculator numbers");
 }
@@ -41,13 +38,10 @@ if (
   throw new Error("Issue with calculator function selectors");
 }
 
-// Calculator screen
 calculatorDisplay.innerText = "0";
 let previousNumber: string = "";
 let currentNumber: string = "";
 let selectedOperator: string = "";
-
-// Event handlers
 
 const handleButtonClick = (event: Event) => {
   if (calculatorDisplay.innerText.length === 9) return;
@@ -121,6 +115,14 @@ const returnResult = () => {
   calculatorDisplay.innerText = calculate(selectedOperator) as string;
 };
 
+const clearCalculator = () => {
+  calculatorDisplay.innerText = "0";
+  previousNumber = "";
+  currentNumber = "";
+  selectedOperator = "";
+  calculatorDisplay.classList.remove("calculator__display--small");
+};
+
 // }
 
 // 3. create forEach loop to attach event handlers to number buttons
@@ -134,3 +136,4 @@ calculatorOperators.forEach((operator) => {
 });
 
 equals.addEventListener("click", returnResult);
+ac.addEventListener("click", clearCalculator);
