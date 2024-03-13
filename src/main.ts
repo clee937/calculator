@@ -43,6 +43,16 @@ let previousNumber: string = "";
 let currentNumber: string = "";
 let selectedOperator: string = "";
 
+const isButtonAPercentage = (event: Event) => {
+  const button = event.target as HTMLButtonElement;
+  return button.innerText === "%";
+};
+
+const isButtonADecimal = (event: Event) => {
+  const button = event.target as HTMLButtonElement;
+  return button.innerText === ".";
+};
+
 const handleButtonClick = (event: Event) => {
   const isDecimal = isButtonADecimal(event);
 
@@ -59,11 +69,6 @@ const handleButtonClick = (event: Event) => {
   updateDisplay(event);
 };
 
-const isButtonADecimal = (event: Event) => {
-  const button = event.target as HTMLButtonElement;
-  return button.innerText === ".";
-};
-
 const updateDisplay = (event: Event) => {
   const target = event.target as HTMLButtonElement;
 
@@ -72,6 +77,18 @@ const updateDisplay = (event: Event) => {
   }
   currentNumber += target.innerText;
   calculatorDisplay.innerText = currentNumber;
+};
+
+const handlePercentageClick = () => {
+  if (!currentNumber && !previousNumber) return;
+
+  if (currentNumber) {
+    const result: number = parseFloat(currentNumber);
+    calculatorDisplay.innerText = (result / 100).toString();
+  } else {
+    const result: number = parseFloat(previousNumber);
+    calculatorDisplay.innerText = (result / 100).toString();
+  }
 };
 
 const addToSelectedOperator = (event: Event) => {
@@ -178,3 +195,4 @@ equals.addEventListener("click", returnResult);
 ac.addEventListener("click", clearCalculator);
 
 decimal.addEventListener("click", handleButtonClick);
+percentage.addEventListener("click", handlePercentageClick);
