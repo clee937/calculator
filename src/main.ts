@@ -44,6 +44,12 @@ let currentNumber: string = "";
 let selectedOperator: string = "";
 
 const handleButtonClick = (event: Event) => {
+  const isDecimal = isButtonADecimal(event);
+
+  if (isDecimal) {
+    if (currentNumber.includes(".")) return;
+  }
+
   if (calculatorDisplay.innerText.length === 9) return;
 
   if (calculatorDisplay.innerText.length >= 6) {
@@ -51,6 +57,11 @@ const handleButtonClick = (event: Event) => {
   }
 
   updateDisplay(event);
+};
+
+const isButtonADecimal = (event: Event) => {
+  const button = event.target as HTMLButtonElement;
+  return button.innerText === ".";
 };
 
 const updateDisplay = (event: Event) => {
@@ -165,3 +176,5 @@ calculatorOperators.forEach((operator) => {
 
 equals.addEventListener("click", returnResult);
 ac.addEventListener("click", clearCalculator);
+
+decimal.addEventListener("click", handleButtonClick);
