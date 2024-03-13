@@ -43,11 +43,6 @@ let previousNumber: string = "";
 let currentNumber: string = "";
 let selectedOperator: string = "";
 
-const isButtonAPercentage = (event: Event) => {
-  const button = event.target as HTMLButtonElement;
-  return button.innerText === "%";
-};
-
 const isButtonADecimal = (event: Event) => {
   const button = event.target as HTMLButtonElement;
   return button.innerText === ".";
@@ -89,6 +84,8 @@ const handlePercentageClick = () => {
     const result: number = parseFloat(previousNumber);
     calculatorDisplay.innerText = (result / 100).toString();
   }
+
+  currentNumber = "";
 };
 
 const addToSelectedOperator = (event: Event) => {
