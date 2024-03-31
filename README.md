@@ -2,7 +2,7 @@
 
 ## About
 
-A mobile responsive calculator app that can chain operations and perform basic calculations.
+This is a mobile responsive calculator app that can chain operations and perform basic calculations. The functionality has been built with TypeScript and the user interface with SCSS.
 
 ## Features
 
